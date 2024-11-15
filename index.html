@@ -5,10 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color" content="#000000"/>
     <title>Telegram Mini App</title>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div id="ton-connect"></div>
+    <div id="Hello">
+    <Script src="backend.js"></Script>
+
+    </div>
+    <script>
+      const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+          manifestUrl: 'https://<YOUR_APP_URL>/tonconnect-manifest.json',
+          buttonRootId: 'ton-connect'
+      });
+  </script>
+  <script>
+    async function connectToWallet() {
+        const connectedWallet = await tonConnectUI.connectWallet();
+        // Do something with connectedWallet if needed
+        console.log(connectedWallet);
+    }
+
+    // Call the function
+    connectToWallet().catch(error => {
+        console.error("Error connecting to wallet:", error);
+    });
+</script>
+
     <script src="/src/index.jsx" type="module"></script>
   </body>
 </html>
